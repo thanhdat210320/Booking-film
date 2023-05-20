@@ -5,6 +5,7 @@ import LoadingCricle from '../components/Loading/loadingCricle'
 
 const Error = lazy(() => import('../pages/ErrorPage'))
 const Home = lazy(() => import('../pages/Home'))
+const DetailFilm = lazy(() => import('../pages/DetailFilm'))
 
 
 const AppRouter = () => {
@@ -20,21 +21,18 @@ const AppRouter = () => {
 				path="/"
 				element={
 					<Suspense fallback={<LoadingCricle />}>
-								<Home />
+							<Home />
 					</Suspense>
 				}
 			/>
-			{/* <Route
-				path="/exercise/:id"
+			<Route
+				path="/:id"
 				element={
 					<Suspense fallback={<LoadingCricle />}>
-							<Layout>
-								<ConfigBook />
-							</Layout>
-
+							<DetailFilm />
 					</Suspense>
 				}
-			/> */}
+			/>
 		</Routes>
 	)
 }

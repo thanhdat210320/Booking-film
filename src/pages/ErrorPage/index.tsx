@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/error-illustration.svg"
 
 const ErrorPage = () => {
+
     const navigate = useNavigate()
     return (
         <div className="container">

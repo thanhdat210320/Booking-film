@@ -3,7 +3,8 @@ import Header from "../../components/Layout/Header"
 import BannerDetail from "../../components/BannerDetail"
 import ShowtimeDetail from "../../components/ShowTmeDetail"
 import MovieBlogDetail from "../../components/MovieBlogDetail"
-
+import Comment from "../../components/Comment"
+import Performer from "../../components/Performer"
 function DetailFilm() {
 
   return (
@@ -14,6 +15,8 @@ function DetailFilm() {
 				<div className="flex p-[5rem] pt-[50px] ">
 					<div className="w-[68%] mr-[30px]">
              <ShowtimeDetail />
+			 <Comment />
+			 <Performer />
 						<MovieBlogDetail />
 					</div>
 					<div className="w-[32%]">

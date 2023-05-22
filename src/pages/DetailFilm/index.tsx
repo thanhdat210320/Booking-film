@@ -5,14 +5,34 @@ import ShowtimeDetail from "../../components/ShowTmeDetail"
 import MovieBlogDetail from "../../components/MovieBlogDetail"
 import Comment from "../../components/Comment"
 import Performer from "../../components/Performer"
+import { useParams } from 'react-router-dom'
+import bookingsAPI from "../../services/bookings.service"
+import { useState , useEffect} from "react"
 
 function DetailFilm() {
+
+	const { id } = useParams()
+
+	console.log(id)
+
+	const [movie, getMovie] = useState<any>({})
+	const getMovieById = async () => {
+		const res = await bookingsAPI.getMoive(id)
+		getMovie(res?.data)
+	}
+
+	console.log(movie)
+	useEffect(() => {
+		getMovieById()
+	}, [id])
 
 	return (
 		<div className="flex items-center justify-center">
 			<div className="w-full">
+
+				
 				<Header />
-				<BannerDetail />
+				<BannerDetail movie={movie}/>
 				<div className="flex p-[5rem] pt-[50px] ">
 					<div className="w-[68%] mr-[30px]">
 						<ShowtimeDetail />

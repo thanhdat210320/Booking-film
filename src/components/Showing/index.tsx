@@ -1,7 +1,7 @@
 import bookingsAPI from "../../services/bookings.service"
 import Modal from '../Popup';
 import { useEffect, useState } from "react"
-
+import { Link } from 'react-router-dom'
 const Showing = () => {
 	const [isOpen, setIsOpen] = useState<any>(false);
 	const [isOpen1, setIsOpen1] = useState<any>(false);
@@ -15,7 +15,8 @@ const Showing = () => {
 		getMoives(res.data?.data)
 	}
 
-	const openTrailer = (item:any) => {
+	const openTrailer = (item: any) => {
+		console.log(item)
 		setIsOpen(true)
 		setTrailer(item)
 	}
@@ -36,28 +37,27 @@ const Showing = () => {
 				className="w-full max-w-[60%] h-[90vh]"
 			>
 				<div className="">
-
-								<div className="w-full h-[400px]" style={{ boxShadow: "1px 1px 5px 1px #E8FFE0" }}>
-									<iframe className='w-full h-full' allow="autoplay; encrypted-media"
-										allowFullScreen src={trailer.trailer} />
-								</div>
-								<div className="flex text-white mt-[20px]">
-									<div className=" w-[10%] h-[120px] mr-[20px]">
-										<img className="w-[80px] h-full object-cover" src={trailer.poster} alt="" />
-									</div>
-									<div className="w-[90%]">
-										<p className="text-[24px]">{trailer.title}</p>
-										<p>Được chuyển thể từ tiểu thuyết Mickey 7 của nhà văn Edward Ashton, Cuốn tiểu thuyết xoay quanh các phiên bản nhân bản vô tính mang tên “Mickey”, dùng để thay thế con người thực hiện cuộc chinh phạt nhằm thuộc địa hóa vương quốc băng giá Niflheim. Mỗi khi một Mickey chết đi,</p>
-										<div className="flex mt-[10px]">
-											<button className="py-[5px] px-[15px] bg-pink-500 rounded-md mr-[10px] hover:opacity-[0.8]">
-												Đặt vẽ
-											</button>
-											<button onClick={() => setIsOpen(false)} className="py-[5px] px-[15px] bg-[#cccc] rounded-md mr-[10px] hover:opacity-[0.8]">
-												Đóng
-											</button>
-										</div>
-									</div>
-								</div>
+					<div className="w-full h-[400px]" style={{ boxShadow: "1px 1px 5px 1px #E8FFE0" }}>
+						<iframe className='w-full h-full' allow="autoplay; encrypted-media"
+							allowFullScreen src={trailer.trailer} />
+					</div>
+					<div className="flex text-white mt-[20px]">
+						<div className=" w-[10%] h-[120px] mr-[20px]">
+							<img className="w-[80px] h-full object-cover" src={trailer.poster} alt="" />
+						</div>
+						<div className="w-[90%]">
+							<p className="text-[24px]">{trailer.title}</p>
+							<p>Được chuyển thể từ tiểu thuyết Mickey 7 của nhà văn Edward Ashton, Cuốn tiểu thuyết xoay quanh các phiên bản nhân bản vô tính mang tên “Mickey”, dùng để thay thế con người thực hiện cuộc chinh phạt nhằm thuộc địa hóa vương quốc băng giá Niflheim. Mỗi khi một Mickey chết đi,</p>
+							<div className="flex mt-[10px]">
+								<button className="py-[5px] px-[15px] bg-pink-500 rounded-md mr-[10px] hover:opacity-[0.8]">
+									Đặt vẽ
+								</button>
+								<button onClick={() => setIsOpen(false)} className="py-[5px] px-[15px] bg-[#cccc] rounded-md mr-[10px] hover:opacity-[0.8]">
+									Đóng
+								</button>
+							</div>
+						</div>
+					</div>
 
 				</div>
 			</Modal>
@@ -110,9 +110,11 @@ const Showing = () => {
 									<div className="group h-[340px] overflow-hidden rounded-lg " onClick={() => openTrailer(item)}>
 										<img className="group-hover:scale-110 transition-transform duration-300 w-full h-full" src={item.poster} alt="" />
 									</div>
-									<div className=" mt-[10px] text-[24px] font-semibold">{item.title}</div>
-									<div className="">{item.genre}</div>
-									<div className="">{item.duration}</div>
+									<Link to={`/${item.id}`} className='nav-link'>
+										<div className=" mt-[10px] text-[24px] font-semibold">{item.title}</div>
+										<div className="">{item.genre}</div>
+										<div className="">{item.duration}</div>
+									</Link>
 								</div>
 							)
 						})}

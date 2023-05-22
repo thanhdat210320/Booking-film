@@ -1,5 +1,6 @@
 import bookingsAPI from "../../services/bookings.service"
 import { useState, useEffect } from "react"
+import { Link } from 'react-router-dom'
 const NewPromotion = () => {
 	const [movies, getMovies] = useState([])
 	const getMovie = async () => {
@@ -11,6 +12,8 @@ const NewPromotion = () => {
 	}, [])
 	return <div className=" scroll-margin-top bg-gray-50 bg-contain bg-bottom bg-no-repeat py-8 md:py-10 lg:py-14 flex flex-col justify-center items-center p-28">
 		<div className="mx-auto w-full max-w-6xl px-5" >
+
+
 			<div className="mb-5 text-center text-[30px] font-bold text-[#d82f8b]">Tin tức - Khuyến mãi
 			</div>
 			<div className="flex justify-between">
@@ -22,13 +25,18 @@ const NewPromotion = () => {
 							<div className=" rounded-lg">
 								<img className=" w-[280px] h-[150px] object-cover" src={item.poster} alt="" />
 							</div>
-							<div className="px-[10px]">
-								<div className="mt-[5px] text-black font-bold">Độc quyền trên MoMo, săn vé CGV chỉ từ 59K!</div>
-							</div>
-							<div className="text-black font-bold px-[20px] mt-[20px]">
-								27/04/2023
-							</div>
+							<Link to={`/${item.id}`} className='nav-link'>
+								<div className="px-[10px]">
+
+									<div className="mt-[5px] text-black font-bold">Độc quyền trên MoMo, săn vé CGV chỉ từ 59K!</div>
+
+								</div>
+								<div className="text-black font-bold px-[20px] mt-[20px]">
+									27/04/2023
+								</div>
+							</Link>
 						</div>
+
 					)
 				})}
 

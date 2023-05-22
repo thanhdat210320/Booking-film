@@ -7,6 +7,7 @@ import CommentViews from "../../CommentViews"
 import MovieBlog from "../../MovieBlog"
 import NewPromotion from "../../NewPromotion"
 
+
 const Body = () => {
   return <div>
     <Banner /> 

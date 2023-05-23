@@ -6,7 +6,7 @@ import LoadingCricle from '../components/Loading/loadingCricle'
 const Error = lazy(() => import('../pages/ErrorPage'))
 const Home = lazy(() => import('../pages/Home'))
 const DetailFilm = lazy(() => import('../pages/DetailFilm'))
-
+const Login = lazy(() => import('../pages/Login'))
 
 const AppRouter = () => {
 
@@ -30,6 +30,14 @@ const AppRouter = () => {
 				element={
 					<Suspense fallback={<LoadingCricle />}>
 							<DetailFilm />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/login"
+				element={
+					<Suspense fallback={<LoadingCricle />}>
+							<Login />
 					</Suspense>
 				}
 			/>

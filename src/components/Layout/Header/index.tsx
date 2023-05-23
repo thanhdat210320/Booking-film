@@ -21,6 +21,11 @@ const Header = () => {
           <li className="mr-[25px]">Khuyến mãi</li>
         </ul>
       </div>
+      <div className="flex">
+        <div className="cursor-pointer hover:text-rose-600">Đăng Nhập</div>
+        <div className="px-[10px]">|</div>
+        <div className="cursor-pointer hover:text-rose-600">Đăng Ký</div>
+      </div>
     </div>
   </div>
 }

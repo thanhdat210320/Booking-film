@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 const Header = () => {
   return <div className="flex justify-center items-center p-[1rem]">
     <div className="flex justify-between items-center w-[1200px]">
@@ -13,7 +13,9 @@ const Header = () => {
       </div>
       <div>
         <ul className="flex items-center text-[#616161] font-bold">
-          <li className="text-[#e77b7b] mr-[25px]">Rạp chiếu</li>
+          <Link to="/">
+            <li className="text-[#e77b7b] mr-[25px]">Rạp chiếu</li>
+          </Link>
           <li className="mr-[25px]">Lịch chiếu</li>
           <li className="mr-[25px]">Phim chiếu</li>
           <li className="mr-[25px]">Review phim</li>
@@ -22,9 +24,13 @@ const Header = () => {
         </ul>
       </div>
       <div className="flex">
-        <div className="cursor-pointer hover:text-rose-600">Đăng Nhập</div>
+        <Link to="/login">
+          <div className="cursor-pointer hover:text-rose-600">Đăng Nhập</div>
+        </Link>
         <div className="px-[10px]">|</div>
-        <div className="cursor-pointer hover:text-rose-600">Đăng Ký</div>
+        <Link to="/register">
+          <div className="cursor-pointer hover:text-rose-600">Đăng Ký</div>
+        </Link>
       </div>
     </div>
   </div>

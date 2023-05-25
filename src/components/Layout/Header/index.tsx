@@ -1,5 +1,28 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 const Header = () => {
+  const [user, setUser] = useState<any>()
+  const [isOpen, setIsOpen] = useState<any>(false)
+  const username = localStorage.getItem('username');
+  const logout = () => {
+    localStorage.removeItem("username");
+    localStorage.removeItem("auth");
+    window?.location?.reload()
+  }
+
+  const openMenu = () => {
+    if(isOpen) {
+      setIsOpen(false)
+    } else {
+      setIsOpen(true)
+    }
+  }
+
+  useEffect(() => {
+    if (username) {
+      setUser(username)
+    }
+  }, [username])
   return <div className="flex justify-center items-center p-[1rem]">
     <div className="flex justify-between items-center w-[1200px]">
       <div className="flex items-center space-x-2">
@@ -16,22 +39,56 @@ const Header = () => {
           <Link to="/">
             <li className="text-[#e77b7b] mr-[25px]">Rạp chiếu</li>
           </Link>
-          <li className="mr-[25px]">Lịch chiếu</li>
+          <li className="mr-[25px] relative " onClick={openMenu}>
+            <p>Lịch chiếu</p>
+            {
+              isOpen && (
+                      <div className="bg-[#fff] text-[18px] border-[1px] mt-[5px] h-[auto] w-[250px] absolute ">
+              <p className="py-[10px] pl-[20px]">CGV</p>
+              <p className="py-[10px] pl-[20px]">Lotte Cinema</p>
+              <p className="py-[10px] pl-[20px]">BHD Star</p>
+              <p className="py-[10px] pl-[20px]">Galaxy Cinema</p>
+              <p className="py-[10px] pl-[20px]">Beta Cinemas</p>
+              <p className="py-[10px] pl-[20px]">CineStar</p>
+              <p className="py-[10px] pl-[20px]">DCINE</p>
+              <p className="py-[10px] pl-[20px]">Mega GS</p>
+              <p className="py-[10px] pl-[20px]">Cinemax</p>
+              
+            </div>
+              )
+            }
+      
+          </li>
           <li className="mr-[25px]">Phim chiếu</li>
           <li className="mr-[25px]">Review phim</li>
           <li className="mr-[25px]">Blog phim</li>
           <li className="mr-[25px]">Khuyến mãi</li>
+          <div className="flex">
+            {
+              username ? (
+                <div className="">{user?.replaceAll('"', ' ')}</div>
+              ) : (
+                <Link to="/login">
+                  <div className="cursor-pointer hover:text-rose-600">Đăng Nhập</div>
+                </Link>
+              )
+            }
+
+            <div className="px-[10px]">|</div>
+            {
+              username ? (
+                <div onClick={logout} className="cursor-pointer hover:text-rose-600">Đăng Xuất</div>
+              ) : (
+                <Link to="/register">
+                  <div className="cursor-pointer hover:text-rose-600">Đăng Ký</div>
+                </Link>
+              )
+            }
+
+          </div>
         </ul>
       </div>
-      <div className="flex">
-        <Link to="/login">
-          <div className="cursor-pointer hover:text-rose-600">Đăng Nhập</div>
-        </Link>
-        <div className="px-[10px]">|</div>
-        <Link to="/register">
-          <div className="cursor-pointer hover:text-rose-600">Đăng Ký</div>
-        </Link>
-      </div>
+
     </div>
   </div>
 }

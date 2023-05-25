@@ -64,6 +64,12 @@ const Comment = () => {
                 </div>
             </div>
         </div>
+        <div className="pt-[20px]">
+            <input className="border-[1px] border-[#f78da7] w-[80%] p-[20px] mr-[10px] rounded" type="text" placeholder="bình luận của bạn" />
+            <button className="border-[1px] p-[20px] rounded hover:bg-[#d97f00] bg-[#fcb900]">
+                GỬI
+            </button>
+        </div>
     </div>
 }
 export default Comment

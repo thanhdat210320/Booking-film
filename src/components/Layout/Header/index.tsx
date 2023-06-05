@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import bookingsAPI from "../../../services/bookings.service";
 const Header = () => {
   const [user, setUser] = useState<any>()
   const [isOpen, setIsOpen] = useState<any>(false)
+  const [cinemas, setCinema] = useState<any>([])
+  
   const username = localStorage.getItem('username');
   const logout = () => {
     localStorage.removeItem("username");
@@ -17,12 +20,25 @@ const Header = () => {
       setIsOpen(true)
     }
   }
+  const Cinema = async () =>{   
+      const res = await bookingsAPI.getCinemas()
+      setCinema(res?.data.data)
+      console.log(res?.data.data)
+  }
+
+  useEffect(() =>  {
+    Cinema()
+  },[])
+
 
   useEffect(() => {
     if (username) {
       setUser(username)
     }
   }, [username])
+
+  
+
   return <div className="flex justify-center items-center p-[1rem]">
     <div className="flex justify-between items-center w-[1200px]">
       <div className="flex items-center space-x-2">
@@ -36,27 +52,26 @@ const Header = () => {
       </div>
       <div>
         <ul className="flex items-center text-[#616161] font-bold">
-          <Link to="/">
-            <li className="text-[#e77b7b] mr-[25px]">Rạp chiếu</li>
-          </Link>
-          <li className="mr-[25px] relative " onClick={openMenu}>
-            <p>Lịch chiếu</p>
-            {
+          <div className="cursor-pointer">
+            <li className="text-[#e77b7b] mr-[25px] relative"  onClick={openMenu}>Rạp chiếu</li>
+             {
               isOpen && (
                       <div className="bg-[#fff] text-[18px] border-[1px] mt-[5px] h-[auto] w-[250px] absolute ">
-              <p className="py-[10px] pl-[20px]">CGV</p>
-              <p className="py-[10px] pl-[20px]">Lotte Cinema</p>
-              <p className="py-[10px] pl-[20px]">BHD Star</p>
-              <p className="py-[10px] pl-[20px]">Galaxy Cinema</p>
-              <p className="py-[10px] pl-[20px]">Beta Cinemas</p>
-              <p className="py-[10px] pl-[20px]">CineStar</p>
-              <p className="py-[10px] pl-[20px]">DCINE</p>
-              <p className="py-[10px] pl-[20px]">Mega GS</p>
-              <p className="py-[10px] pl-[20px]">Cinemax</p>
+               {cinemas?.map((item:any) =>{
+                return(
+                  <p className="py-[10px] pl-[20px] hover:bg-[#FAEBD7]">{item?.name}</p>
+                )
+               })}         
+              
+              
               
             </div>
               )
             }
+          </div>
+          <li className="mr-[25px] ">
+            <p>Lịch chiếu</p>
+           
       
           </li>
           <li className="mr-[25px]">Phim chiếu</li>

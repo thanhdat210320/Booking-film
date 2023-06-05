@@ -2,13 +2,14 @@ import bookingsAPI from "../../services/bookings.service"
 import { useEffect, useState } from "react"
 import Modal from '../Popup';
 import { Link } from "react-router-dom";
-const Coming = () => {
+const FilterDetail = () => {
 	const [movies, getMovies] = useState([])
 	const [isOpen, setIsOpen] = useState<any>(false);
 	const [trailer, setTrailer] = useState<any>({});
 	const getMoive = async () => {
-		const res = await bookingsAPI.getMoives()
+		const res = await bookingsAPI.getMoives({size: 999})
 		getMovies(res.data?.data)
+        console.log(res.data?.data)
 	}
 	const openTrailer = (item: any) => {
 		console.log(item)
@@ -37,7 +38,7 @@ const Coming = () => {
 					</div>
 					<div className="flex text-white mt-[20px]">
 						<div className=" w-[10%] h-[120px] mr-[20px]">
-							<img className="w-[80px] h-full object-cover" src={`http://localhost:8228/files/${trailer.poster}`} alt="" />
+							<img className="w-[80px] h-full object-cover" src={trailer.poster} alt="" />
 						</div>
 						<div className="w-[90%]">
 							<p className="text-[24px]">{trailer.title}</p>
@@ -57,7 +58,6 @@ const Coming = () => {
 			</Modal>
 			<div className="bg-contain bg-bottom bg-no-repeat py-8 md:py-10 lg:py-14 flex justify-center items-center p-28">
 				<div className="mx-auto w-full max-w-6xl px-5" >
-					<div className="mb-5 text-center text-[25px] font-bold text-[#d82f8b]">PHIM SẮP CHIẾU</div>
 					<div className="flex justify-between">
 						{movies?.map((item: any) => {
 							return (
@@ -76,16 +76,9 @@ const Coming = () => {
 						})}
 
 					</div>
-
-					<div className="flex content-center items-center mt-[60px]">
-						<button className="text-[#fff] p-[10px] hover:opacity-[0.8] text-[20px] font-bold bg-[#d82f8b] m-auto rounded-lg">
-							Tìm phim chiếu rạp
-						</button>
-
-					</div>
 				</div>
 			</div>
 		</>
 	)
 }
-export default Coming
+export default FilterDetail

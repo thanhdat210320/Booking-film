@@ -23,6 +23,10 @@ const bookingsAPI = {
 		const url = "/v1/bookings"
 		return postAsync(url, params);
 	},
+	getCinemas(params?: any): Promise<CommonResponse> {
+		const url = "/v1/cinemas"
+		return getAsync(url, params);
+	},
 	updateBookings(
     id: string,
     params: any

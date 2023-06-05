@@ -21,7 +21,7 @@ const Trainner = () => {
 					return (
 						<div className="w-[23%] text-[#fff] ">
 							<div className="h-[150px] rounded-lg overflow-hidden">
-								<img className="hover:scale-110 transition-transform duration-300 w-full h-full object-cover" src={item.poster} alt="" />
+								<img className="hover:scale-110 transition-transform duration-300 w-full h-full object-cover" src={`http://localhost:8228/files/${item.poster}`} alt="" />
 							</div>
 							<div className=" mt-[10px]">{item.title}</div>
 							<div className="">{item.genre}</div>

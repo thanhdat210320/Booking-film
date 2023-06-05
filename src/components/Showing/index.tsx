@@ -43,7 +43,7 @@ const Showing = () => {
 					</div>
 					<div className="flex text-white mt-[20px]">
 						<div className=" w-[10%] h-[120px] mr-[20px]">
-							<img className="w-[80px] h-full object-cover" src={trailer.poster} alt="" />
+							<img className="w-[80px] h-full object-cover" src={`http://localhost:8228/files/${trailer.poster}`} alt="" />
 						</div>
 						<div className="w-[90%]">
 							<p className="text-[24px]">{trailer.title}</p>
@@ -108,7 +108,7 @@ const Showing = () => {
 							return (
 								<div className="w-[23%]  text-[#fff]">
 									<div className="group h-[340px] overflow-hidden rounded-lg " onClick={() => openTrailer(item)}>
-										<img className="group-hover:scale-110 transition-transform duration-300 w-full h-full" src={item.poster} alt="" />
+										<img className="group-hover:scale-110 transition-transform duration-300 w-full h-full object-cover" src={`http://localhost:8228/files/${item.poster}`} alt="" />
 									</div>
 									<Link to={`/${item.id}`} className='nav-link'>
 										<div className=" mt-[10px] text-[24px] font-semibold">{item.title}</div>

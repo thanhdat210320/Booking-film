@@ -5,12 +5,13 @@ import ShowtimeDetail from "../../components/ShowTmeDetail"
 import MovieBlogDetail from "../../components/MovieBlogDetail"
 import Comment from "../../components/Comment"
 import Performer from "../../components/Performer"
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import bookingsAPI from "../../services/bookings.service"
 import { useState , useEffect} from "react"
 
 function DetailFilm() {
-
+	const [cinemas, setCinemas] = useState<any>([]);
+	const [commingMovies, setCommingMovies] = useState<any>([])
 	const { id } = useParams()
 
 	console.log(id)
@@ -21,7 +22,29 @@ function DetailFilm() {
 		getMovie(res?.data)
 	}
 
-	console.log(movie)
+	const getDataListCinemas = async () => {
+		try {
+			const data = await bookingsAPI.getCinemas({ size: 999 })
+			setCinemas(data?.data?.data)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+	
+	const getDataListCommingMovies = async () => {
+		try {
+			const data = await bookingsAPI.getMoivesComming({ size: 10 })
+			setCommingMovies(data?.data?.data)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+	useEffect(() => {
+		getDataListCinemas()
+		getDataListCommingMovies()
+	}, [])
 	useEffect(() => {
 		getMovieById()
 	}, [id])
@@ -35,22 +58,24 @@ function DetailFilm() {
 				<BannerDetail movie={movie}/>
 				<div className="flex p-[5rem] pt-[50px] ">
 					<div className="w-[68%] mr-[30px]">
-						<ShowtimeDetail />
+						<ShowtimeDetail movie={movie} cinemas={cinemas}/>
+						<Performer movie={movie}/>
 						<Comment />
-						<Performer />
-						<MovieBlogDetail />
+						{/* <MovieBlogDetail /> */}
 					</div>
 					<div className="w-[32%]">
 						<h1 className="text-[24px] font-bold mb-[20px] mt-[30px]">Phim đang chiếu</h1>
 						<div className=" ">
-							<div className="flex mb-[20px] pb-[20px]">
+							{commingMovies?.map((item: any) => {
+							return (
+								<div className="flex mb-[20px] pb-[20px]">
 								<div className="w-[120px] h-[160px] mr-[20px] rounded-lg overflow-hidden">
 									<img className="hover:scale-110 transition-transform duration-300 w-full h-full" src="https://traffic-edge31.cdn.vncdn.io/cinema/img/4186357399981418-ccaqnG8K0ub279MX19F2RPsEwal.jpg" alt="" />
 								</div>
-								<div className="">
-									<div className="font-bold">Khắc tinh của quỷ</div>
+								<Link to={`/${item.id}`} className="">
+									<div className="font-bold">{item?.title}</div>
 									<div className="text-[#ccc]">
-										Kinh dị, Bí ẩn
+										{item?.genre}
 									</div>
 									<br />
 
@@ -58,63 +83,11 @@ function DetailFilm() {
 										2D Phụ đề
 									</div>
 
-								</div>
+								</Link>
 
 							</div>
-							<div className="flex border-b-[#e5e5e5] border-b-2 mb-[20px] pb-[20px]">
-								<div className="w-[120px] h-[160px] mr-[20px] rounded-lg overflow-hidden">
-									<img className="hover:scale-110 transition-transform duration-300 w-full h-full" src="https://traffic-edge31.cdn.vncdn.io/cinema/img/4186357399981418-ccaqnG8K0ub279MX19F2RPsEwal.jpg" alt="" />
-								</div>
-								<div className="">
-									<div className="font-bold">Khắc tinh của quỷ</div>
-									<div className="text-[#ccc]">
-										Kinh dị, Bí ẩn
-									</div>
-									<br />
-
-									<div className="mb-[5px] font-bold">
-										2D Phụ đề
-									</div>
-
-								</div>
-
-							</div>
-							<div className="flex border-b-[#e5e5e5] border-b-2 mb-[20px] pb-[20px]">
-								<div className="w-[120px] h-[160px] mr-[20px] rounded-lg overflow-hidden">
-									<img className="hover:scale-110 transition-transform duration-300 w-full h-full" src="https://traffic-edge31.cdn.vncdn.io/cinema/img/4186357399981418-ccaqnG8K0ub279MX19F2RPsEwal.jpg" alt="" />
-								</div>
-								<div className="">
-									<div className="font-bold">Khắc tinh của quỷ</div>
-									<div className="text-[#ccc]">
-										Kinh dị, Bí ẩn
-									</div>
-									<br />
-
-									<div className="mb-[5px] font-bold">
-										2D Phụ đề
-									</div>
-
-								</div>
-
-							</div>
-							<div className="flex mb-[20px] pb-[20px]">
-								<div className="w-[120px] h-[160px] mr-[20px] rounded-lg overflow-hidden">
-									<img className="hover:scale-110 transition-transform duration-300 w-full h-full" src="https://traffic-edge31.cdn.vncdn.io/cinema/img/4186357399981418-ccaqnG8K0ub279MX19F2RPsEwal.jpg" alt="" />
-								</div>
-								<div className="">
-									<div className="font-bold">Khắc tinh của quỷ</div>
-									<div className="text-[#ccc]">
-										Kinh dị, Bí ẩn
-									</div>
-									<br />
-
-									<div className="mb-[5px] font-bold">
-										2D Phụ đề
-									</div>
-
-								</div>
-
-							</div>
+								)
+							})}
 
 						</div>
 					</div>

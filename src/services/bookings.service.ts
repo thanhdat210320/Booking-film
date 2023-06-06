@@ -32,7 +32,7 @@ const bookingsAPI = {
 		return getAsync(url);
 	},
 	addBookings( params: any): Promise<CommonResponse> {
-		const url = "/v1/bookings"
+		const url = "/bookings"
 		return postAsync(url, params);
 	},
 	getCinemas(params?: any): Promise<CommonResponse> {

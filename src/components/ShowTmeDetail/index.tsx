@@ -1,15 +1,18 @@
 import bookingsAPI from "../../services/bookings.service"
 import { useEffect, useState } from "react"
 import Modal from '../Popup';
+import { useParams } from "react-router-dom";
 
 const ShowtimeDetail = ({movie, cinemas}: any) => {
+	const { id } = useParams()
 	const[cinema, setCinema] = useState<any>({})
 	const [isOpen, setIsOpen] = useState<any>(false);
 	const [item, setItem] = useState<any>({})
 	const [ticket, setTicket] = useState<any>({})
-	const [data, setData] = useState<any>([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]);
+	const [selectedTickets, setSelectedTickets] = useState<any>([]);
+	const [data, setData] = useState<any>([]);
 
-	console.log(item)
+	console.log(ticket.seatNumber)
 
 	const bookking = async (id: any) => {
 		setIsOpen(true)
@@ -19,12 +22,50 @@ const ShowtimeDetail = ({movie, cinemas}: any) => {
 				bookingsAPI.getTicket(id)
 			])
 			setTicket(ticket?.data)
+			const tickets = Array.from({length: ticket?.data.seatNumber}, (value, index) => index + 1)
+			setData(tickets)
 			setItem(res?.data)
 		} catch (error) {
 			console.log(error)
 		}
 	}
 
+
+  const handleTicketSelection = (ticketId: any) => {
+    if (selectedTickets.includes(ticketId)) {
+      // Nếu vé đã được chọn, loại bỏ nó khỏi danh sách
+      setSelectedTickets((prevSelectedTickets: any) =>
+        prevSelectedTickets.filter((id: any) => id !== ticketId)
+      );
+    } else {
+      // Nếu vé chưa được chọn, thêm vào danh sách
+      setSelectedTickets((prevSelectedTickets: any) => [...prevSelectedTickets, ticketId]);
+    }
+  };
+
+	const bookingFilm = async () => {
+		const userId = localStorage.getItem('userIds')
+		try {
+			const res = await bookingsAPI.addBookings({
+				userId: userId,
+				movieId: id,
+				status: "DADAT",
+				totalPrice: calculateTotalPrice(),
+				bookingDate: new Date()
+
+			})
+			alert("Đã đặt vé phim thành công")
+			setIsOpen(false)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+  const calculateTotalPrice = () => {
+    const totalPrice = selectedTickets.length * ticket?.price;
+    return totalPrice;
+  };
+	
    const getCinema = async (id: any) => {
 	try {
       const res = await bookingsAPI.getCinema(id)
@@ -41,6 +82,7 @@ const ShowtimeDetail = ({movie, cinemas}: any) => {
 		open={isOpen}
 		handleCancel={() => {
 			setIsOpen(false)
+			setSelectedTickets([])
 		}}
 		isOutSide={true}
 		className="w-full max-w-[60%] h-[90vh]"
@@ -50,7 +92,7 @@ const ShowtimeDetail = ({movie, cinemas}: any) => {
 				<div className="text-white w-[60%] h-[60%] m-auto flex justify-center items-center flex-wrap">
 					{data?.map((i: any) => {
 						return (
-							<button className="w-[2.5rem] h-[2.5rem] ml-[0.6rem] mt-[20px] mb-[0.6rem] hover:opacity-[0.6] rounded-md bg-red-600">{i}</button>
+						<button onClick={() => handleTicketSelection(i)} className={`${selectedTickets.includes(i) ? "opacity-[0.5]"  : ""} w-[2.5rem] h-[2.5rem] ml-[0.6rem] mt-[20px] mb-[0.6rem] hover:opacity-[0.6] rounded-md bg-red-600`}>{i}</button>
 						)
 					}
 					)}
@@ -63,11 +105,11 @@ const ShowtimeDetail = ({movie, cinemas}: any) => {
 				</div>
 				<div className="flex justify-between border-b-[2px] border-white pb-[10px]">
 					<p>Chỗ ngồi: </p>
-					<p>E4, E3, C3, B8, C8, A1 </p>
+					<p>{selectedTickets.join(', ')}</p>
 				</div>
 				<div className="flex justify-between">
-					<p>Tạm tính: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(ticket?.price)}</p>
-					<button className="py-[5px] px-[15px] bg-pink-500 rounded-md mr-[10px] hover:opacity-[0.8]">Mua vé</button>
+					<p>Tổng tiền: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(calculateTotalPrice())}</p>
+					<button onClick={bookingFilm} className="py-[5px] px-[15px] bg-pink-500 rounded-md mr-[10px] hover:opacity-[0.8]">Mua vé</button>
 				</div>
 			</div>
 		</div>

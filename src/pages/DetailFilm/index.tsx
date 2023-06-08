@@ -35,7 +35,7 @@ function DetailFilm() {
 	const getDataListCommingMovies = async () => {
 		try {
 			const data = await bookingsAPI.getMoivesComming({ size: 10 })
-			setCommingMovies(data?.data?.data)
+			setCommingMovies(data?.data?.data?.splice(10, 14))
 		} catch (error) {
 			console.log(error)
 		}
@@ -70,7 +70,7 @@ function DetailFilm() {
 							return (
 								<div className="flex mb-[20px] pb-[20px]">
 								<div className="w-[120px] h-[160px] mr-[20px] rounded-lg overflow-hidden">
-									<img className="hover:scale-110 transition-transform duration-300 w-full h-full" src="https://traffic-edge31.cdn.vncdn.io/cinema/img/4186357399981418-ccaqnG8K0ub279MX19F2RPsEwal.jpg" alt="" />
+									<img className="hover:scale-110 transition-transform duration-300 w-full h-full" src={`http://localhost:8228/files/${item.poster}`} alt="" />
 								</div>
 								<Link to={`/${item.id}`} className="">
 									<div className="font-bold">{item?.title}</div>

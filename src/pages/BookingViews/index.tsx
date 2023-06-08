@@ -56,7 +56,7 @@ function BookingViews() {
 	}
 
 	const susscesTour = () => {
-		alert("Chúc mừng bạn đã hoàn thành chuyến đi")
+		alert("Chúc mừng bạn đã xem xong xem")
 		navigate(`/${id}`)
 	}
 
@@ -74,7 +74,7 @@ function BookingViews() {
 					{bookingTour ? (
 						<div className="flex p-[5rem] pt-[50px] flex-col w-[70%] justify-center items-center m-auto bg-white rounded-[300px]	my-[30px]">
 							<div className="flex justify-center items-center w-full ">
-								<h1 className="text-center font-bold text-[24px] flex-col flex"> {booking.status === "HUYTOUR" ? "Bạn đã hủy thành công Phim" : booking.status === "DAHOANTHANHTOUR" ? "Bạn đã hoàn thành chuyến đi" : "Bạn đã đặt thành công Phim " } <span className="text-red-500 text-[30px] font-bold"> {movies?.title}</span> </h1>
+								<h1 className="text-center font-bold text-[24px] flex-col flex"> {booking.status === "HUYTOUR" ? "Bạn đã hủy thành công Phim" : booking.status === "DAHOANTHANHTOUR" ? "Bạn đã hoàn thành bộ phim" : "Bạn đã đặt thành công Phim " } <span className="text-red-500 text-[30px] font-bold"> {movies?.title}</span> </h1>
 							</div>
 							<div className="text-[18px] mt-[20px] flex flex-col justify-center  items-center text-[#d82f8b]">
 								<div className="mb-[20px]">{booking.status === "HUYTOUR" ? "THÔNG TIN CHI TIẾT VỀ PHIM BẠN ĐÃ HỦY" : "THÔNG TIN CHI TIẾT VỀ PHIM BẠN ĐÃ ĐẶT"}</div>

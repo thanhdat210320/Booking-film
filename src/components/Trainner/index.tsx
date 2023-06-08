@@ -4,7 +4,7 @@ const Trainner = () => {
 	const [movies, getMovies] = useState([])
 	const getMovie = async () => {
 		const res = await bookingsAPI.getMoives()
-		getMovies(res.data?.data)
+		getMovies(res.data?.data?.splice(15, 19))
 	}
 	useEffect(() => {
 		getMovie()
@@ -24,7 +24,7 @@ const Trainner = () => {
 								<img className="hover:scale-110 transition-transform duration-300 w-full h-full object-cover" src={`http://localhost:8228/files/${item.poster}`} alt="" />
 							</div>
 							<div className=" mt-[10px]">{item.title}</div>
-							<div className="">{item.genre}</div>
+							<div className="">{item.genre} phút</div>
 						</div>
 					)
 				})}

@@ -12,7 +12,7 @@ const Showing = () => {
 	console.log(movies)
 	const getMovie = async () => {
 		const res = await bookingsAPI.getMoives()
-		getMoives(res.data?.data)
+		getMoives(res.data?.data?.splice(0, 4))
 	}
 
 	const openTrailer = (item: any) => {
@@ -49,9 +49,9 @@ const Showing = () => {
 							<p className="text-[24px]">{trailer.title}</p>
 							<p>Được chuyển thể từ tiểu thuyết Mickey 7 của nhà văn Edward Ashton, Cuốn tiểu thuyết xoay quanh các phiên bản nhân bản vô tính mang tên “Mickey”, dùng để thay thế con người thực hiện cuộc chinh phạt nhằm thuộc địa hóa vương quốc băng giá Niflheim. Mỗi khi một Mickey chết đi,</p>
 							<div className="flex mt-[10px]">
-								<button className="py-[5px] px-[15px] bg-pink-500 rounded-md mr-[10px] hover:opacity-[0.8]">
-									Đặt vẽ
-								</button>
+							<Link to={`/${trailer.id}`} className="py-[5px] px-[15px] bg-pink-500 rounded-md mr-[10px] hover:opacity-[0.8]">
+									Đặt vé
+								</Link>
 								<button onClick={() => setIsOpen(false)} className="py-[5px] px-[15px] bg-[#cccc] rounded-md mr-[10px] hover:opacity-[0.8]">
 									Đóng
 								</button>
@@ -62,7 +62,7 @@ const Showing = () => {
 				</div>
 			</Modal>
 
-			<Modal
+			{/* <Modal
 				title="Mua vé xem phim"
 				open={isOpen1}
 				handleCancel={() => {
@@ -97,7 +97,7 @@ const Showing = () => {
 						</div>
 					</div>
 				</div>
-			</Modal>
+			</Modal> */}
 			<div className=" bg-black bg-contain bg-bottom bg-no-repeat py-8 md:py-10 lg:py-14 flex justify-center items-center p-28" style={{
 				backgroundImage: `url(https://static.mservice.io/img/momo-upload-api-210701105436-637607336767432408.jpg)`
 			}}>
@@ -113,7 +113,7 @@ const Showing = () => {
 									<Link to={`/${item.id}`} className='nav-link'>
 										<div className=" mt-[10px] text-[24px] font-semibold">{item.title}</div>
 										<div className="">{item.genre}</div>
-										<div className="">{item.duration}</div>
+										<div className="">{item.duration} phút</div>
 									</Link>
 								</div>
 							)

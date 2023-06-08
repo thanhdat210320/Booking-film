@@ -78,15 +78,18 @@ const LoadingCricle = () => {
                 <div className="text-center text-2xl font-bold text-pink-600 lg:text-left lg:text-2xl">Tìm phim chiếu rạp trên Box Cinemas</div>
                 <div className="flex">
                     <div className="px-[15px] py-[10px] border-[1px] flex rounded mr-[10px]">
-                        <div onClick={OpenCategoryFilm} className=" text-[18px] cursor-pointer relative flex justify-between">
+                        <div  className=" text-[18px] cursor-pointer relative flex justify-between">
                             <p className="pr-[20px]">{ theloai ? theloai : "Thể Loại"}</p>
-                            <ChevronDown />
+														{theloai && 	<p className="" onClick={() => setTheloai("")}>x</p>}
+													
+                            <ChevronDown onClick={OpenCategoryFilm} />
                             {
                                 OpenCategory && (
                                     <div className="bg-[#fff] text-[18px] border-[1px] mt-[42px] ml-[-16px] h-[auto] w-[250px] absolute inline z-10 ">
                                        {theloais?.map((item: any) => {
                                         return (
-                                            <p className="py-[10px] pl-[20px] hover:bg-[#FAEBD7]" onClick={() => setTheloai(item?.name)}>{item?.name}</p>
+                                            <p className="py-[10px] pl-[20px] hover:bg-[#FAEBD7]" onClick={() => { setTheloai(item?.name)
+																							setOpenCategory(false)}}>{item?.name}</p>
                                         )
                                        })}
                                     </div>
@@ -95,15 +98,17 @@ const LoadingCricle = () => {
                         </div>
                     </div>
                     <div className="px-[15px] py-[10px] border-[1px] flex rounded cursor-pointer mr-[10px] ">
-                        <div onClick={OpenCinema} className=" text-[18px] flex relative justify-between">
+                        <div  className=" text-[18px] flex relative justify-between">
                             <p className="pr-[20px]">{ valueCinema ? valueCinema : "Rạp Phim" }</p>
-                            <ChevronDown />
+														{cinema && 	<p className="" onClick={() => optionCinemas("")}>x</p>}
+                            <ChevronDown onClick={OpenCinema}/>
                             {
                                 OpenCinemas && (
                                     <div className="bg-[#fff] text-[18px] border-[1px] mt-[42px] ml-[-16px] h-[auto] w-[250px] absolute inline z-10">
                                         {cinemas?.map((item: any) => {
                                             return (
-                                                <p className="py-[10px] pl-[20px] hover:bg-[#FAEBD7]" onClick={() => optionCinemas(item)}>{item?.name}</p>
+                                                <p className="py-[10px] pl-[20px] hover:bg-[#FAEBD7]" onClick={() => { optionCinemas(item)
+																								setOpenCinemas(false)}}>{item?.name}</p>
                                             )
                                         })}
 

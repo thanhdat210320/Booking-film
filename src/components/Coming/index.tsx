@@ -8,7 +8,7 @@ const Coming = () => {
 	const [trailer, setTrailer] = useState<any>({});
 	const getMoive = async () => {
 		const res = await bookingsAPI.getMoives()
-		getMovies(res.data?.data)
+		getMovies(res.data?.data?.splice(5, 4))
 	}
 	const openTrailer = (item: any) => {
 		console.log(item)
@@ -43,9 +43,9 @@ const Coming = () => {
 							<p className="text-[24px]">{trailer.title}</p>
 							<p>Được chuyển thể từ tiểu thuyết Mickey 7 của nhà văn Edward Ashton, Cuốn tiểu thuyết xoay quanh các phiên bản nhân bản vô tính mang tên “Mickey”, dùng để thay thế con người thực hiện cuộc chinh phạt nhằm thuộc địa hóa vương quốc băng giá Niflheim. Mỗi khi một Mickey chết đi,</p>
 							<div className="flex mt-[10px]">
-								<button className="py-[5px] px-[15px] bg-pink-500 rounded-md mr-[10px] hover:opacity-[0.8]">
+							<Link to={`/${trailer.id}`} className="py-[5px] px-[15px] bg-pink-500 rounded-md mr-[10px] hover:opacity-[0.8]">
 									Đặt vẽ
-								</button>
+								</Link>
 								<button onClick={() => openTrailer(false)} className="py-[5px] px-[15px] bg-[#cccc] rounded-md mr-[10px] hover:opacity-[0.8]">
 									Đóng
 								</button>

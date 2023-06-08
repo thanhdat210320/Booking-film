@@ -23,7 +23,7 @@ const NewPromotion = () => {
 							boxShadow: `0 2px 8px 0 rgba(20,16,11,.07)`
 						}}>
 							<div className=" rounded-lg">
-								<img className=" w-[280px] h-[150px] object-cover" src={item.poster} alt="" />
+								<img className=" w-[280px] h-[150px] object-cover" src={`http://localhost:8228/files/${item.poster}`} alt="" />
 							</div>
 							<Link to={`/${item.id}`} className='nav-link'>
 								<div className="px-[10px]">

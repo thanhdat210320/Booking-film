@@ -10,6 +10,7 @@ const Header = () => {
   const logout = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("auth");
+    localStorage.removeItem("userIds");
     window?.location?.reload()
   }
 
@@ -25,6 +26,8 @@ const Header = () => {
       setCinema(res?.data.data)
       console.log(res?.data.data)
   }
+	const bookingFilm: any = localStorage.getItem('booking')
+	const filmId = JSON.parse(bookingFilm)
 
   useEffect(() =>  {
     Cinema()
@@ -69,12 +72,8 @@ const Header = () => {
               )
             }
           </div>
-          <li className="mr-[25px] ">
-            <p>Lịch chiếu</p>
-           
-      
-          </li>
-          <li className="mr-[25px]">Phim chiếu</li>
+          <Link to={`/bookingviews/${filmId?.movieId}`} className="mr-[25px] cursor-pointer">Thông tin</Link>
+          <Link to={`/filterfilm`} className="mr-[25px]">Phim chiếu</Link>
           <li className="mr-[25px]">Review phim</li>
           <li className="mr-[25px]">Blog phim</li>
           <li className="mr-[25px]">Khuyến mãi</li>

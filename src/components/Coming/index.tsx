@@ -78,10 +78,9 @@ const Coming = () => {
 					</div>
 
 					<div className="flex content-center items-center mt-[60px]">
-						<button className="text-[#fff] p-[10px] hover:opacity-[0.8] text-[20px] font-bold bg-[#d82f8b] m-auto rounded-lg">
+					<Link to={`/filterfilm`} className="text-[#fff] p-[10px] hover:opacity-[0.8] text-[20px] font-bold bg-[#d82f8b] m-auto rounded-lg">
 							Tìm phim chiếu rạp
-						</button>
-
+							</Link>
 					</div>
 				</div>
 			</div>

@@ -43,9 +43,9 @@ const NewPromotion = () => {
 
 			</div>
 			<div className="flex content-center items-center mt-[40px]">
-				<button className="text-[#d82f8b] px-[15px] py-[7px] hover:opacity-[0.8] text-[18px] border-[#d82f8b] border-2 font-bold bg-[#fff] m-auto rounded-2xl">
+			<Link to={`/filterfilm`}className="text-[#d82f8b] px-[15px] py-[7px] hover:opacity-[0.8] text-[18px] border-[#d82f8b] border-2 font-bold bg-[#fff] m-auto rounded-2xl">
 					Xem thêm
-				</button>
+				</Link>
 			</div>
 		</div>
 	</div>

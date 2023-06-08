@@ -9,6 +9,7 @@ const DetailFilm = lazy(() => import('../pages/DetailFilm'))
 const Login = lazy(() => import('../pages/Login'))
 const Register = lazy(() => import('../pages/Register'))
 const FilterFilm = lazy(() => import('../pages/FilterFilm'))
+const BookingViews = lazy(() => import('../pages/BookingViews'))
 const AppRouter = () => {
 
 	return (
@@ -55,6 +56,14 @@ const AppRouter = () => {
 				element={
 					<Suspense fallback={<LoadingCricle />}>
 							<FilterFilm />
+					</Suspense>
+				}
+			/>
+						<Route
+				path="/bookingviews/:id"
+				element={
+					<Suspense fallback={<LoadingCricle />}>
+							<BookingViews />
 					</Suspense>
 				}
 			/>

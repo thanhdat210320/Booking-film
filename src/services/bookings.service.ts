@@ -10,6 +10,10 @@ const bookingsAPI = {
 		const url = "/v1/auth/signIn"
 		return postAsync(url, params);
 	},
+	getUser(id: any): Promise<CommonResponse> {
+		const url = `/v1/users/${id}`
+		return getAsync(url)
+		},
 
 	getMoives(params?: any): Promise<CommonResponse> {
 		const url = "/v1/movies"
@@ -47,8 +51,8 @@ const bookingsAPI = {
     id: string,
     params: any
   ): Promise<CommonResponse> {
-    const url = `/v1/bookings/${id}`
-    return putAsync(url, params)
+    const url = `/bookings/${id}`
+    return patchAsync(url, params)
   },
 	deleteBookings(
     id: string

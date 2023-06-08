@@ -4,7 +4,6 @@ import Footer from "../../components/Layout/Footer"
 import Filter from "../../components/Filter"
 import Header from "../../components/Layout/Header"
 import Banner from "../../components/Banner"
-import FilterDetail from "../../components/FilterDetail"
 
 
 function FilterFilm() {
@@ -15,7 +14,6 @@ function FilterFilm() {
         <Header />
         <Banner />
         <Filter />
-        <FilterDetail />
         <Footer />
       </div>
     </div>

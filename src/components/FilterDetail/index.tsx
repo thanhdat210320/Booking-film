@@ -1,24 +1,17 @@
-import bookingsAPI from "../../services/bookings.service"
+
 import { useEffect, useState } from "react"
 import Modal from '../Popup';
 import { Link } from "react-router-dom";
-const FilterDetail = () => {
-	const [movies, getMovies] = useState([])
+const FilterDetail = ({movies}: any) => {
 	const [isOpen, setIsOpen] = useState<any>(false);
 	const [trailer, setTrailer] = useState<any>({});
-	const getMoive = async () => {
-		const res = await bookingsAPI.getMoives({size: 999})
-		getMovies(res.data?.data)
-        console.log(res.data?.data)
-	}
+
 	const openTrailer = (item: any) => {
 		console.log(item)
 		setIsOpen(true)
 		setTrailer(item)
 	}
-	useEffect(() => {
-		getMoive()
-	}, [])
+
 	return (
 		<>
 

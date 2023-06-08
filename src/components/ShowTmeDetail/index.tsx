@@ -1,7 +1,7 @@
 import bookingsAPI from "../../services/bookings.service"
 import { useEffect, useState } from "react"
 import Modal from '../Popup';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ShowtimeDetail = ({movie, cinemas}: any) => {
 	const { id } = useParams()
@@ -11,6 +11,7 @@ const ShowtimeDetail = ({movie, cinemas}: any) => {
 	const [ticket, setTicket] = useState<any>({})
 	const [selectedTickets, setSelectedTickets] = useState<any>([]);
 	const [data, setData] = useState<any>([]);
+	const navigate = useNavigate()
 
 	console.log(ticket.seatNumber)
 
@@ -45,20 +46,30 @@ const ShowtimeDetail = ({movie, cinemas}: any) => {
 
 	const bookingFilm = async () => {
 		const userId = localStorage.getItem('userIds')
-		try {
-			const res = await bookingsAPI.addBookings({
-				userId: userId,
-				movieId: id,
-				status: "DADAT",
-				totalPrice: calculateTotalPrice(),
-				bookingDate: new Date()
+		const data = {
+			userId: userId,
+			movieId: id,
+			status: "DADAT",
+			totalPrice: calculateTotalPrice(),
+			bookingDate: new Date()
 
-			})
-			alert("Đã đặt vé phim thành công")
-			setIsOpen(false)
-		} catch (error) {
-			console.log(error)
 		}
+		if(userId) {
+			try {
+				const res = await bookingsAPI.addBookings(data)
+				if( res?.status === "success"){
+					localStorage.setItem('booking', JSON.stringify(data))
+					setIsOpen(false)
+					alert("Đã đặt vé phim thành công")
+					navigate(`/bookingviews/${id}`)
+				}
+			} catch (error) {
+				console.log(error)
+			}
+		} else {
+			alert("Bạn phải đăng nhập trước khi đặt vé")
+		}
+
 	}
 
   const calculateTotalPrice = () => {

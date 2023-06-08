@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import bookingsAPI from "../../services/bookings.service"
 import { useState, useEffect } from "react"
 const MovieBlog = () => {
@@ -29,9 +30,9 @@ const MovieBlog = () => {
 
 			</div>
 			<div className="flex content-center items-center mt-[40px]">
-				<button className="text-[#fff] px-[15px] py-[7px] hover:opacity-[0.8] text-[18px] font-bold bg-[#d82f8b] m-auto rounded-2xl">
+			<Link to={`/filterfilm`}  className="text-[#fff] px-[15px] py-[7px] hover:opacity-[0.8] text-[18px] font-bold bg-[#d82f8b] m-auto rounded-2xl">
 					Xem thêm
-				</button>
+				</Link>
 			</div>
 		</div>
 	</div>

@@ -3,8 +3,8 @@ import { useEffect, useState } from "react"
 const Trainner = () => {
 	const [movies, getMovies] = useState([])
 	const getMovie = async () => {
-		const res = await bookingsAPI.getMoives()
-		getMovies(res.data?.data?.splice(15, 19))
+		const res = await bookingsAPI.getMoives({size: 999})
+		getMovies(res.data?.data?.splice(16, 19))
 	}
 	useEffect(() => {
 		getMovie()
@@ -24,7 +24,7 @@ const Trainner = () => {
 								<img className="hover:scale-110 transition-transform duration-300 w-full h-full object-cover" src={`http://localhost:8228/files/${item.poster}`} alt="" />
 							</div>
 							<div className=" mt-[10px]">{item.title}</div>
-							<div className="">{item.genre} phút</div>
+							<div className="">{item.duration} phút</div>
 						</div>
 					)
 				})}

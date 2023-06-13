@@ -3,9 +3,11 @@ import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 const NewPromotion = () => {
 	const [movies, getMovies] = useState([])
+
+	console.log(movies)
 	const getMovie = async () => {
-		const res = await bookingsAPI.getMoives()
-		getMovies(res.data?.data)
+		const res = await bookingsAPI.getMoives({size: 999})
+		getMovies(res?.data?.data?.splice(16, 18))
 	}
 	useEffect(() => {
 		getMovie()
@@ -28,11 +30,11 @@ const NewPromotion = () => {
 							<Link to={`/${item.id}`} className='nav-link'>
 								<div className="px-[10px]">
 
-									<div className="mt-[5px] text-black font-bold">Độc quyền trên MoMo, săn vé CGV chỉ từ 59K!</div>
+									<div className="mt-[5px] text-black font-bold">{item?.title}</div>
 
 								</div>
 								<div className="text-black font-bold px-[20px] mt-[20px]">
-									27/04/2023
+								{item?.duration} phút
 								</div>
 							</Link>
 						</div>

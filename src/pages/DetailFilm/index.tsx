@@ -14,7 +14,7 @@ function DetailFilm() {
 	const [commingMovies, setCommingMovies] = useState<any>([])
 	const { id } = useParams()
 
-	console.log(id)
+	console.log(commingMovies)
 
 	const [movie, getMovie] = useState<any>({})
 	const getMovieById = async () => {
@@ -34,8 +34,8 @@ function DetailFilm() {
 	
 	const getDataListCommingMovies = async () => {
 		try {
-			const data = await bookingsAPI.getMoivesComming({ size: 10 })
-			setCommingMovies(data?.data?.data?.splice(10, 14))
+			const data = await bookingsAPI.getMoivesComming()
+			setCommingMovies(data?.data?.data)
 		} catch (error) {
 			console.log(error)
 		}

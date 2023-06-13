@@ -5,7 +5,7 @@ const MovieBlog = () => {
 	const [movies, getMovies] = useState([])
 	const getMovie = async () => {
 		const res = await bookingsAPI.getMoives()
-		getMovies(res.data?.data)
+		getMovies(res?.data?.data?.splice(6, 8))
 	}
 	useEffect(() => {
 		getMovie()

@@ -75,7 +75,7 @@ const LoadingCricle = () => {
         <>
         <div className="mx-auto w-full max-w-7xl pt-[20px] " >
             <div className=" flex py-[10px] justify-between">
-                <div className="text-center text-2xl font-bold text-pink-600 lg:text-left lg:text-2xl">Tìm phim chiếu rạp trên Box Cinemas</div>
+                <div className="text-center text-2xl font-bold text-pink-600 lg:text-left lg:text-2xl">Phim chiếu rạp trên Box Cinemas</div>
                 <div className="flex">
                     <div className="px-[15px] py-[10px] border-[1px] flex rounded mr-[10px]">
                         <div  className=" text-[18px] cursor-pointer relative flex justify-between">

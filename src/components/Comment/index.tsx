@@ -36,7 +36,7 @@ const Comment = () => {
 
     const getComment = async () => {
         try {
-            const data = await bookingsAPI.getReviews({size: 999, tourId: id})
+            const data = await bookingsAPI.getReviews({size: 999, moviesId: id})
             setComments(data?.data?.data)
         } catch (error) {
                console.log(error)

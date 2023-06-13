@@ -3,7 +3,7 @@ const Performer = ({movie}: any) => {
     return <div className="pt-[40px] ">
         <p className="text-[24px] font-bold">Diễn viên & Đoàn làm phim</p>
         <div className="flex overflow-auto ">
-<p className="text-[18px] mt-[20px] font-bold">{movie?.genre}</p>
+<p className="text-[18px] mt-[20px] font-bold">{movie?.director}</p>
         </div>
         <p className="text-[24px] font-bold pt-[20px]">Hình ảnh & Video</p>
         <div className="flex">

@@ -1,8 +1,9 @@
+import sex from "../../assets/images/anh_header.jpg"
 const Banner = () => {
   return <div className="flex justify-center items-center p-20 bg-pink-50">
     <div className="flex justify-between items-center w-[1200px]" >
       <div>
-        <h2 className="font-bold text-3xl text-[#f15050]">Rạp chiếu phim MoMo</h2>
+        <h2 className="font-bold text-3xl text-[#f15050]">Rạp chiếu phim Box Cinemas</h2>
         <ul className="flex flex-col space-y-1 font-medium pt-1 m-[10px]">
           <li>Rạp phim đầy đủ từ Bắc tới Nam</li>
           <li>Suất chiếu cập nhật liên tục</li>
@@ -16,8 +17,7 @@ const Banner = () => {
 			</div>
       </div>
       <div className="w-1/2">
-        <img src="	https://static.mservice.io/img/momo-upload-api-210820192530-637650843307420995.jpg
-"></img>
+        <img src={sex}></img>
       </div>
     </div>
   </div>

@@ -44,11 +44,9 @@ const Coming = () => {
 							<p>Được chuyển thể từ tiểu thuyết Mickey 7 của nhà văn Edward Ashton, Cuốn tiểu thuyết xoay quanh các phiên bản nhân bản vô tính mang tên “Mickey”, dùng để thay thế con người thực hiện cuộc chinh phạt nhằm thuộc địa hóa vương quốc băng giá Niflheim. Mỗi khi một Mickey chết đi,</p>TRAINNER MỚI NHẤT
 							<div className="flex mt-[10px]">
 							<Link to={`/${trailer.id}`} className="py-[5px] px-[15px] bg-pink-500 rounded-md mr-[10px] hover:opacity-[0.8]">
-									Đặt vẽ
+									Đặt vé
 								</Link>
-								<button onClick={() => openTrailer(false)} className="py-[5px] px-[15px] bg-[#cccc] rounded-md mr-[10px] hover:opacity-[0.8]">
-									Đóng
-								</button>
+								<button onClick={() => setIsOpen(false)} className="py-[5px] px-[15px] bg-[#cccc] rounded-md mr-[10px] hover:opacity-[0.8]"> Đóng </button>
 							</div>
 						</div>
 					</div>
@@ -68,7 +66,7 @@ const Coming = () => {
 									<Link to={`/${item.id}`}>
 										<div className=" mt-[10px]">{item.title}</div>
 										<div className="">{item.genre}</div>
-										<div className="">{item.duration}</div>
+										<div className="">{item.duration} phút</div>
 									</Link>
 
 								</div>
